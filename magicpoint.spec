@@ -8,7 +8,7 @@ Group:       X11/Applications/Graphics
 Group(pl):   X11/Aplikacje/Grafika
 Source:      ftp://ftp.mew.org/pub/MagicPoint/%{name}-%{version}.tar.gz
 URL:         http://www.mew.org/mgp/
-BuildRoot:   /tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 Obsoletes:   mgp
 
 %description
