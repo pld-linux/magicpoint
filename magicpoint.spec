@@ -6,6 +6,7 @@ Release:	3
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.mew.org/pub/mgp/%{name}-%{version}.tar.gz
+# Source0-md5:	7a5d91b2b3bdabea704ee3cb6505d772
 URL:		http://www.mew.org/mgp/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
