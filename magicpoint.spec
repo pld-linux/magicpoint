@@ -46,11 +46,10 @@ xmkmf -a
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install install.man \
 	DESTDIR=$RPM_BUILD_ROOT \
 	LIBDIR=%{_datadir}
-
-gzip -9nf README SYNTAX USAGE FAQ RELNOTES
 
 %clean
 rm -rf $RPM_BUILD_ROOT
