@@ -38,7 +38,7 @@ prezentacjê mo¿na szybko przygotowaæ z u¿yciem ulubionego edytora.
 
 xmkmf -a
 %{__make} LIBDIR=%{_datadir} \
-	CXXDEBUGFLAGS="%{?debug:-O -g}%{!?debug:$RPM_OPT_FLAGS}"
+	CXXDEBUGFLAGS="%{?debug:-O0 -g}%{!?debug:$RPM_OPT_FLAGS}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
