@@ -52,28 +52,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /usr/X11R6/bin/*
 /usr/X11R6/share/mgp
 /usr/X11R6/man/man1/*
-
-%changelog
-* Sat Dec 19 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.04a-3]
-- added gzipping man pages,
-- added misiing %attr ofrm man pages,
-- fixed pl translation (thanks for Micha³ Kuratczyk).
-
-* Mon Dec  9 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [1.04a-2]
-- added gzipping man pages,
-- changed Buildroot to /tmp/%%{name}-%%{version}-root,
-- LIBDIR changed to /usr/X11R6/share,
-- added using %%{name} and %%{version} in Source,
-- added using LDFLAGS="-s" to ./configure enviroment,
-- Group changed to X11/Applications/Graphics,
-- added pl translation,
-- added full %attr description in %files.
-
-* Fri Oct 08 1998 Michael Maher <mike@redhat.com> 
-- updated source to 1.04a
-- built for 5.2
-
-* Fri May 22 1998 Cristian Gafton <gafton@redhat.com>
-- built for PowerTools
