@@ -1,0 +1,148 @@
+--- magicpoint-1.10a/configure.in.orig	2003-05-28 07:34:23.000000000 +0200
++++ magicpoint-1.10a/configure.in	2004-04-01 01:00:58.800468536 +0200
+@@ -93,43 +93,29 @@
+   # XXX: freetype2 may use freetype-config
+  	AC_MSG_CHECKING(for freetype1 library/header)
+  	for dir in /usr/local/freetype /usr/local /opt/freetype /usr/pkg /usr /usr/include/freetype1 ; do
+- 		ac_cv_ft_lib=no
+  		ac_cv_ft_include=no
+-		shlib1=`echo $dir/lib/libttf.so* | head -1 | sed -e 's/.*\///'`
+-		if test x$shlib1 = x; then
+-			shlib1=no
+-		fi
+- 		if test -d $dir/lib -a -f $dir/lib/$shlib1; then
+- 			ac_cv_ft_lib="$dir/lib"
+- 			ac_cv_ft_libpath="$shlib1"
+- 		elif test -d $dir/lib -a -f $dir/lib/libttf.a; then
+- 			ac_cv_ft_lib="$dir/lib"
+- 			ac_cv_ft_libpath="libttf.a"
+- 		fi
+  		if test -d $dir/include -a -f $dir/include/freetype.h; then
+  			ac_cv_ft_include="$dir/include"
+  		elif test -d $dir/include/freetype -a -f $dir/include/freetype/freetype.h; then
+  			ac_cv_ft_include="$dir/include/freetype"
+ 		fi
+- 		if test "$ac_cv_ft_lib" != "no" -a "$ac_cv_ft_include" != "no"; then
+- 			LIBS="-L$ac_cv_ft_lib $LIBS"
++ 		if test "$ac_cv_ft_include" != "no"; then
+  			CFLAGS="-I$ac_cv_ft_include $CFLAGS"
+  			break
+  		fi
+  	done
+- 	if test "$ac_cv_ft_lib" = "no" -a "$ac_cv_ft_include" = "no"; then
++ 	if test "$ac_cv_ft_include" = "no"; then
+  		AC_MSG_RESULT(no - not using freetype)
+  		mgp_use_freetype=no
+  	else
+  		AC_MSG_RESULT($ac_cv_ft_lib and $ac_cv_ft_include)
+  	fi
+         if test "$mgp_use_freetype" = "yes"; then
+-	  LIBS="-L$ac_cv_ft_lib $LIBS"
++	  LIBS="-lttf $LIBS"
+ 	  OPTFLAGS="-I$ac_cv_ft_include $OPTFLAGS"
+-	  DEPLIBS="$ac_cv_ft_lib/$ac_cv_ft_libpath $DEPLIBS"
+ 	  AC_CHECK_LIB(intl, dgettext)
+  	  AC_CHECK_LIB(ttf, TT_Init_FreeType, [],
+-		[echo "Fatal: libttf.a not found"
++		[echo "Fatal: libttf not found"
+ 		exit 1])
+  	  AC_TRY_COMPILE([#include <freetype.h>], [], [], [dnl
+  		echo "Fatal: freetype.h not found"
+@@ -211,54 +197,31 @@
+ 	AC_MSG_CHECKING(for VFlib library/header)
+ 	for dir in /usr/local/VFlib /usr/local/vflib /usr/local /usr/pkg /usr; do
+ 		ac_cv_vf_libname=VFlib
+-		ac_cv_vf_libdir=no
+ 		ac_cv_vf_hdrdir=no
+-		shlib1=`echo $dir/lib/libVFlib.so* | head -1 | sed -e 's/.*\///'`
+-		shlib2=`echo $dir/lib/libVFlib2.so* | head -1 | sed -e 's/.*\///'`
+-		if test x$shlib1 = x; then
+-			$shlib1=no
+-		fi
+-		if test x$shlib2 = x; then
+-			$shlib2=no
+-		fi
+-		if test -d $dir/lib -a -f $dir/lib/$shlib1; then
+-			ac_cv_vf_libdir="$dir/lib"
+- 			ac_cv_vf_libpath=$shlib1
+-		elif test -d $dir/lib -a -f $dir/lib/libVFlib.a; then
+-			ac_cv_vf_libdir="$dir/lib"
+-			ac_cv_vf_libpath="libVFlib.a"
+-		elif test -d $dir/lib -a -f $dir/lib/$shlib2; then
+-			ac_cv_vf_libname=VFlib2
+-			ac_cv_vf_libdir="$dir/lib"
+- 			ac_cv_vf_libpath=$shlib2
+-		elif test -d $dir/lib -a -f $dir/lib/libVFlib2.a; then
+-			ac_cv_vf_libname=VFlib2
+-			ac_cv_vf_libdir="$dir/lib"
+-			ac_cv_vf_libpath="libVFlib2.a"
+-		fi
++		AC_CHECK_LIB(VFlib, main, [], [
++			AC_CHECK_LIB(VFlib2, main, [ac_cv_vf_libname=VFlib2], [ac_cv_vf_libname=no])
++		])
+ 		if test -d $dir/include -a -f $dir/include/VF.h; then
+ 			ac_cv_vf_hdrdir="$dir/include"
+ 		fi
+-		if test "$ac_cv_vf_libdir" != "no" -a "$ac_cv_vf_hdrdir" != "no"; then
+-			LIBS="-L$ac_cv_vf_libdir $LIBS"
++		if test "$ac_cv_vf_hdrdir" != "no"; then
+ 			CFLAGS="-I$ac_cv_vf_hdrdir $CFLAGS"
+ 			break
+ 		fi
+ 	done
+-	if test "$ac_cv_vf_libdir" = "no" -o "$ac_cv_vf_hdrdir" = "no"; then
++	if test "$ac_cv_vf_hdrdir" = "no"; then
+ 		AC_MSG_RESULT(no - not using VFlib)
+ 		mgp_use_vflib=no
+ 	else
+-		AC_MSG_RESULT($ac_cv_vf_libdir and $ac_cv_vf_hdrdir)
++		AC_MSG_RESULT($ac_cv_vf_libname and $ac_cv_vf_hdrdir)
+ 	fi
+ fi
+ if test "$mgp_use_vflib" = "yes"; then
+-	LIBS="-L$ac_cv_vf_libdir -l$ac_cv_vf_libname $LIBS"
++	LIBS="-l$ac_cv_vf_libname $LIBS"
+ 	OPTFLAGS="-I$ac_cv_vf_hdrdir $OPTFLAGS"
+-	DEPLIBS="$ac_cv_vf_libdir/$ac_cv_vf_libpath $DEPLIBS"
+ 	AC_CHECK_LIB($ac_cv_vf_libname, VF_Init,
+-		[mgp_cv_vflib_a=$ac_cv_vf_libpath],
+-		[echo "Fatal: $ac_cv_vf_libpath not found"
++		[mgp_cv_vflib_a="-l$ac_cv_vf_libname"],
++		[echo "Fatal: $ac_cv_vf_libname not found"
+ 		exit 1])
+ 	AC_TRY_COMPILE([#include <VF.h>], [], [], [dnl
+ 		echo "Fatal: VF.h not found"
+@@ -315,14 +278,6 @@
+ else
+   for i in /usr/pkg /usr/local /usr; do
+ 	if test -f $i/include/png.h; then 
+-		if test -f $i/lib/libpng.a ; then
+-			DEPLIBS="$DEPLIBS $i/lib/libpng.a"
+-		elif test -f $i/lib/libpng.so ; then
+-			DEPLIBS="$DEPLIBS $i/lib/libpng.so"
+-		else
+-			break;
+-		fi
+-		LIBS="$LIBS -L$i/lib"
+ 		OPTFLAGS="$OPTFLAGS -I$i/include"
+ 		AC_CHECK_LIB(png, png_read_image, 
+ 			[LIBS="$LIBS -lpng"
+@@ -338,17 +293,9 @@
+ 
+ for i in /usr/pkg /usr/local /usr; do
+ 	if test -f $i/include/libmng.h; then 
+-		if test -f $i/lib/libmng.a ; then
+-			DEPLIBS="$DEPLIBS $i/lib/libmng.a"
+-		elif test -f $i/lib/libmng.so ; then
+-			DEPLIBS="$DEPLIBS $i/lib/libmng.so"
+-		else
+-			break;
+-		fi
+-		LIBS="$LIBS -L$i/lib"
+ 		OPTFLAGS="$OPTFLAGS -I$i/include"
+ 		AC_CHECK_LIB(mng, mng_initialize, 
+-			[LIBS="$LIBS -Wl,-rpath,$i/lib -lmng"
++			[LIBS="$LIBS -lmng"
+ 			 AC_DEFINE(MNG)], 
+ 		[AC_CHECK_LIB(mng, mng_readdisplay,
+ 			[LIBS="$LIBS -lmng -ljpeg"
