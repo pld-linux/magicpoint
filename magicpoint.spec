@@ -9,7 +9,7 @@ Group(pl):	X11/Aplikacje/Grafika
 Source:		ftp://ftp.mew.org/pub/MagicPoint/%{name}-%{version}.tar.gz
 BuildRequires:	XFree86-devel
 URL:		http://www.mew.org/mgp/
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mgp
 
 %define		_prefix		/usr/X11R6
