@@ -1,0 +1,13 @@
+--- configure.in~	Sat Apr 13 21:14:14 2002
++++ configure.in	Sat Apr 13 21:16:19 2002
+@@ -99,8 +99,8 @@
+  			ac_cv_ft_lib="$dir/lib"
+  			ac_cv_ft_libpath="libttf.a"
+  		fi
+- 		if test -d $dir/include -a -f $dir/include/freetype.h; then
+- 			ac_cv_ft_include="$dir/include"
++ 		if test -d $dir/include/freetype1/freetype -a -f $dir/include/freetype1/freetype/freetype.h; then
++ 			ac_cv_ft_include="$dir/include/freetype1/freetype"
+  		elif test -d $dir/include/freetype -a -f $dir/include/freetype/freetype.h; then
+  			ac_cv_ft_include="$dir/include/freetype1/freetype"
+ 		fi
