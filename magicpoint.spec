@@ -1,17 +1,17 @@
 Summary:	MagicPoint is a X11 Presentation Application
 Summary(pl):	MagicPoint - program do grafiki prezentacyjnej pod X11
 Name:		magicpoint
-Version:	1.09a
+Version:	1.10a
 Release:	3
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	ftp://ftp.mew.org/pub/MagicPoint/%{name}-%{version}.tar.gz
-# Source0-md5:	4fc48bd292a7c8b1aab656bf2f0af47d
+Source0:	ftp://ftp.mew.org/pub/mgp/%{name}-%{version}.tar.gz
 URL:		http://www.mew.org/mgp/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	freetype1-devel
+Requires:	libjpeg-progs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mgp
 
@@ -33,7 +33,7 @@ prezentacjê mo¿na szybko przygotowaæ z u¿yciem ulubionego edytora.
 %setup -q
 
 %build
-cp -f /usr/share/automake/config.* .
+cp -f %{_datadir}/automake/config.* .
 %{__aclocal}
 %{__autoconf}
 %configure
@@ -56,6 +56,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README SYNTAX USAGE FAQ RELNOTES sample/*.{mgp,jpg,eps}
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_prefix}/X11R6/bin/*
 %{_datadir}/mgp
-%{_mandir}/man1/*
+%{_prefix}/X11R6/man/man1/*
