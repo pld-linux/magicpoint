@@ -2,11 +2,12 @@ Summary:	MagicPoint is a X11 Presentation Application
 Summary(pl):	MagicPoint - program do grafiki prezentacyjnej pod X11
 Name:		magicpoint
 Version:	1.07a
-Release:	1
-Copyright:	GPL
+Release:	2
+License:	GPL
 Group:		X11/Applications/Graphics
+Group(de):	X11/Applikationen/Grafik
 Group(pl):	X11/Aplikacje/Grafika
-Source:		ftp://ftp.mew.org/pub/MagicPoint/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.mew.org/pub/MagicPoint/%{name}-%{version}.tar.gz
 BuildRequires:	XFree86-devel
 URL:		http://www.mew.org/mgp/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -16,10 +17,11 @@ Obsoletes:	mgp
 %define		_mandir		%{_prefix}/man
 
 %description
-MagicPoint is an X11 based presentation tool. It is designed to make simple
-presentations easy while to make complicated presentations possible. Its
-presentation file (whose suffix is typically .mgp) is just text so that you
-can create presentation files quickly with your favorite editor (e.g. VI).
+MagicPoint is an X11 based presentation tool. It is designed to make
+simple presentations easy while to make complicated presentations
+possible. Its presentation file (whose suffix is typically .mgp) is
+just text so that you can create presentation files quickly with your
+favorite editor (e.g. VI).
 
 %description -l pl
 MagicPoint jest narzêdziem do robienia grafiki prezentacyjnej pod X11.
@@ -31,12 +33,12 @@ prezentacjê mo¿na szybko przygotowaæ z u¿yciem ulubionego edytora.
 %setup -q
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--enable-freetype
 
 xmkmf -a
-%{__make} LIBDIR=%{_datadir} CXXDEBUGFLAGS="$RPM_OPT_FLAGS"
+%{__make} LIBDIR=%{_datadir} \
+	CXXDEBUGFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-O -g}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -44,14 +46,14 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	LIBDIR=%{_datadir}
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/*
+gzip -9nf README SYNTAX USAGE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README SYNTAX USAGE sample/*.{mgp,gif,eps}
+%doc *.gz sample/*.{mgp,gif,eps}
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/mgp
 %{_mandir}/man1/*
