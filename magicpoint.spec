@@ -51,7 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README SYNTAX USAGE sample/*.{mgp,gif,eps}
 %attr(755, root, root) /usr/X11R6/bin/*
 /usr/X11R6/share/mgp
-%attr(644, root,  man) /usr/X11R6/man/man1/*
+/usr/X11R6/man/man1/*
 
 %changelog
 * Sat Dec 19 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
