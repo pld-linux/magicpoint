@@ -5,8 +5,6 @@ Version:	1.07a
 Release:	5
 License:	GPL
 Group:		X11/Applications/Graphics
-Group(de):	X11/Applikationen/Grafik
-Group(pl):	X11/Aplikacje/Grafika
 Source0:	ftp://ftp.mew.org/pub/MagicPoint/%{name}-%{version}.tar.gz
 URL:		http://www.mew.org/mgp/
 BuildRequires:	XFree86-devel
