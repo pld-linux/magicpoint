@@ -35,7 +35,7 @@ prezentacjê mo¿na szybko przygotowaæ z u¿yciem ulubionego edytora.
 
 %build
 cp -f /usr/share/automake/config.* .
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure
 
