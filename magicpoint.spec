@@ -36,7 +36,7 @@ prezentacjê mo¿na szybko przygotowaæ z u¿yciem ulubionego edytora.
 %build
 cp -f /usr/share/automake/config.* .
 aclocal
-autoconf
+%{__autoconf}
 %configure
 
 xmkmf -a
