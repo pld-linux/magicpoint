@@ -2,7 +2,7 @@ Summary:     MagicPoint is a X11 Presentation Application
 Summary(pl): MagicPoint - program do grafiki prezentacyjnej pod X11
 Name:        magicpoint
 Version:     1.04a
-Release:     2
+Release:     3
 Copyright:   GPL
 Group:       X11/Applications/Graphics
 Group(pl):   X11/Aplikacje/Grafika
@@ -19,7 +19,7 @@ can create presentation files quickly with your favorite editor (e.g. VI).
 
 %description
 MagicPoint jest narzêdziem do robienia grafiki prezentacyjnej pod X11.
-Zosta³ on zrobiony do robiewnia prostych prezentacji. Pliki z opisem
+Zosta³ on zrobiony do tworzenia prostych prezentacji. Pliki z opisem
 prezentacji (z rozszerzeniem .mgp) s± plikami tekstowymi tak wiêc sam±
 prezentacjê mo¿na szybko przygotowaæ z u¿yciem ulubionego edytora.
 
@@ -31,6 +31,7 @@ CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
 ./configure \
 	--prefix=/usr/X11R6 \
 	--enable-freetype
+
 xmkmf -a
 make LIBDIR=/usr/X11R6/share
 
@@ -40,6 +41,8 @@ make install install.man \
 	DESTDIR=$RPM_BUILD_ROOT \
 	LIBDIR=/usr/X11R6/share
 
+gzip -9nf $RPM_BUILD_ROOT/usr/X11R6/man/man1/*
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -48,9 +51,15 @@ rm -rf $RPM_BUILD_ROOT
 %doc README SYNTAX USAGE sample/*.{mgp,gif,eps}
 %attr(755, root, root) /usr/X11R6/bin/*
 /usr/X11R6/share/mgp
-/usr/X11R6/man/man1/*
+%attr(644, root,  man) /usr/X11R6/man/man1/*
 
 %changelog
+* Sat Dec 19 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.04a-3]
+- added gzipping man pages,
+- added misiing %attr ofrm man pages,
+- fixed pl translation (thanks for Micha³ Kuratczyk).
+
 * Mon Dec  9 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.04a-2]
 - added gzipping man pages,
