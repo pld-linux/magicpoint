@@ -6,6 +6,7 @@ Release:	3
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.mew.org/pub/MagicPoint/%{name}-%{version}.tar.gz
+# Source0-md5:	4fc48bd292a7c8b1aab656bf2f0af47d
 URL:		http://www.mew.org/mgp/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
