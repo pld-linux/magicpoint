@@ -16,15 +16,15 @@ BuildRequires:	automake
 # blegh, freetype2 is used for Xft2, but obsolete freetype1 is used to access TTFs :/
 BuildRequires:	freetype1-devel
 BuildRequires:	freetype-devel >= 2.1.0
+BuildRequires:	giflib-devel
 BuildRequires:	imlib-devel
 BuildRequires:	libmng-devel
 BuildRequires:	libpng-devel
-BuildRequires:	libungif-devel
 BuildRequires:	pkgconfig
 BuildRequires:	xft-devel
 Requires:	libjpeg-progs
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	mgp
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 MagicPoint is an X11 based presentation tool. It is designed to make
