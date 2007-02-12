@@ -1,5 +1,5 @@
 Summary:	MagicPoint is a X11 Presentation Application
-Summary(pl):	MagicPoint - program do grafiki prezentacyjnej pod X11
+Summary(pl.UTF-8):   MagicPoint - program do grafiki prezentacyjnej pod X11
 Name:		magicpoint
 Version:	1.10a
 Release:	3
@@ -33,11 +33,11 @@ possible. Its presentation file (whose suffix is typically .mgp) is
 just text so that you can create presentation files quickly with your
 favorite editor (e.g. VI).
 
-%description -l pl
-MagicPoint jest narzêdziem do robienia grafiki prezentacyjnej pod X11.
-Zosta³ on zrobiony do tworzenia prostych prezentacji. Pliki z opisem
-prezentacji (z rozszerzeniem .mgp) s± plikami tekstowymi, wiêc sam±
-prezentacjê mo¿na szybko przygotowaæ z u¿yciem ulubionego edytora.
+%description -l pl.UTF-8
+MagicPoint jest narzÄ™dziem do robienia grafiki prezentacyjnej pod X11.
+ZostaÅ‚ on zrobiony do tworzenia prostych prezentacji. Pliki z opisem
+prezentacji (z rozszerzeniem .mgp) sÄ… plikami tekstowymi, wiÄ™c samÄ…
+prezentacjÄ™ moÅ¼na szybko przygotowaÄ‡ z uÅ¼yciem ulubionego edytora.
 
 %prep
 %setup -q
