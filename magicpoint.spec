@@ -1,5 +1,5 @@
 Summary:	MagicPoint is a X11 Presentation Application
-Summary(pl.UTF-8):   MagicPoint - program do grafiki prezentacyjnej pod X11
+Summary(pl.UTF-8):	MagicPoint - program do grafiki prezentacyjnej pod X11
 Name:		magicpoint
 Version:	1.10a
 Release:	3
